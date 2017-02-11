@@ -103,10 +103,21 @@ module.exports = {
   },
 
   plugins: [
+    // Set route to .eslintrc file
+    new webpack.LoaderOptionsPlugin({
+      test: /\.js$/,
+      options: {
+        eslint: {
+          configFile: 'node_modules/custom-scripts/config/eslint.json'
+        }
+      }
+    }),
+
     // Lint CSS files using Stylelint
     new StyleLintPlugin({
       context: paths.source,
-      files: '{,**/}*.css'
+      files: '{,**/}*.css',
+      configFile: 'node_modules/custom-scripts/config/stylelint.json'
     }),
 
     // ExtractTextPlugin

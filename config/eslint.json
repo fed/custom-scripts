@@ -1,4 +1,3 @@
-// http://eslint.org/docs/rules/
 {
   "parserOptions": {
     "ecmaVersion": 6,
