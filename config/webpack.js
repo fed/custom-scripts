@@ -24,21 +24,7 @@ function uglify() {
 }
 
 module.exports = {
-  entry: [
-    // activate HMR for React
-    'react-hot-loader/patch',
-
-    // bundle the client for webpack-dev-server
-    // and connect to the provided endpoint
-    'webpack-dev-server/client?http://localhost:6789',
-
-    // bundle the client for hot reloading
-    // only- means to only hot reload for successful updates
-    'webpack/hot/only-dev-server',
-
-    // the entry point of our app
-    paths.indexJs
-  ],
+  entry: paths.indexJs,
 
   output: {
     // Needs to be an absolute path
@@ -142,13 +128,7 @@ module.exports = {
       data: {
         environment: ENVIRONMENT
       }
-    }),
-
-    // enable HMR globally
-    new webpack.HotModuleReplacementPlugin(),
-
-    // prints more readable module names in the browser console on HMR updates
-    new webpack.NamedModulesPlugin()
+    })
   ],
 
   // Avoid complex relative routes when importing modules
