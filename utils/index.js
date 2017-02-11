@@ -1,7 +1,5 @@
 const chalk = require('chalk');
-const fs = require('fs');
 const fse = require('fs-extra');
-const path = require('path');
 const paths = require('../config/paths');
 
 module.exports = {
@@ -9,7 +7,6 @@ module.exports = {
   logError,
   copyPublicFolder,
   createBuildDirectory,
-  resolveApp,
   checkRequiredFiles,
   printFileSizes,
   printErrors
@@ -36,13 +33,6 @@ function copyPublicFolder() {
 function createBuildDirectory() {
   fse.removeSync(paths.build);
   fse.mkdirpSync(paths.build);
-}
-
-// Resolve relative paths.
-function resolveApp(relativePath) {
-  const appDirectory = fs.realpathSync(process.cwd());
-
-  return path.resolve(appDirectory, relativePath);
 }
 
 // Warn and crash if required files are missing.

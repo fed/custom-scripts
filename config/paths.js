@@ -1,4 +1,11 @@
-const {resolveApp} = require('../utils');
+const fs = require('fs');
+const path = require('path');
+
+function resolveApp(relativePath) {
+  const appDirectory = fs.realpathSync(process.cwd());
+
+  return path.resolve(appDirectory, relativePath);
+}
 
 module.exports = {
   // The source folder is where the application source code lives in.
