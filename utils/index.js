@@ -1,5 +1,6 @@
 const chalk = require('chalk');
-const fs = require('fs-extra');
+const fs = require('fs');
+const fse = require('fs-extra');
 const path = require('path');
 const paths = require('../config/paths');
 
@@ -26,33 +27,33 @@ function logError(text) {
 
 // Copy all files from the public folder to the build one
 function copyPublicFolder() {
-  fs.copySync(paths.public, paths.build, {
+  fse.copySync(paths.public, paths.build, {
     dereference: true
   });
 }
 
 // Create an empty build directory
 function createBuildDirectory() {
-  fs.removeSync(paths.build);
-  fs.mkdirpSync(paths.build);
+  fse.removeSync(paths.build);
+  fse.mkdirpSync(paths.build);
 }
 
 // Resolve relative paths.
-const appDirectory = fs.realpathSync(process.cwd());
-
 function resolveApp(relativePath) {
+  const appDirectory = fs.realpathSync(process.cwd());
+
   return path.resolve(appDirectory, relativePath);
 }
 
 // Warn and crash if required files are missing.
 function checkRequiredFiles() {
-  const indexHtmlExists = fs.existsSync(config.paths.index.html);
-  const indexJsExists = fs.existsSync(config.paths.index.js);
+  const indexHtmlExists = fse.existsSync(paths.indexHtml);
+  const indexJsExists = fse.existsSync(paths.indexJs);
 
   if (!indexHtmlExists || !indexJsExists) {
     logError(`\nSome required files couldn't be found. Make sure these all exist:\n`);
-    logError(`\t- ${config.paths.index.html}`);
-    logError(`\t- ${config.paths.index.js}\n`);
+    logError(`\t- ${paths.indexHtml}`);
+    logError(`\t- ${paths.indexJs}\n`);
 
     process.exit(1);
   }
