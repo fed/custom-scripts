@@ -10,16 +10,17 @@ serve();
 function serve() {
   const compiler = webpack(webpackConfig);
   const server = new WebpackDevServer(compiler, devServerConfig);
+  const port = 6789;
 
   // Launch WebpackDevServer
-  server.listen(6789, err => {
+  server.listen(port, err => {
     if (err) {
       return logError(err);
     }
 
     const url = `http://localhost:${port}`;
 
-    console.log('\nStarting the development server...');
-    console.log(`\nApp will go live on ${chalk.green(url)}`);
+    console.log('Starting the development server...');
+    console.log(`App will go live on ${chalk.green(url)}\n`);
   });
 }
