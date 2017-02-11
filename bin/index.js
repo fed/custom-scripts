@@ -4,12 +4,14 @@ var script = process.argv[2];
 var args = process.argv.slice(3);
 var chalk = require('chalk');
 
+require('babel-register');
+
 switch (script) {
   case 'build':
   case 'start':
   case 'test':
     var result = spawn.sync(
-      'babel-node',
+      'node',
       [require.resolve('../scripts/' + script)].concat(args),
       {stdio: 'inherit'}
     );
