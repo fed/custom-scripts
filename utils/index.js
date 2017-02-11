@@ -1,5 +1,6 @@
 const chalk = require('chalk');
 const fse = require('fs-extra');
+const fs = require('fs');
 const paths = require('../config/paths');
 
 module.exports = {
