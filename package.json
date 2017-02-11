@@ -1,6 +1,6 @@
 {
   "name": "custom-scripts",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A production-ready alternative to react-scripts",
   "bin": {
     "custom-scripts": "./bin/index.js"
