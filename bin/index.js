@@ -2,13 +2,14 @@
 var spawn = require('cross-spawn');
 var script = process.argv[2];
 var args = process.argv.slice(3);
+var chalk = require('chalk');
 
 switch (script) {
   case 'build':
   case 'start':
   case 'test':
     var result = spawn.sync(
-      'node',
+      'babel-node',
       [require.resolve('../scripts/' + script)].concat(args),
       {stdio: 'inherit'}
     );
@@ -34,7 +35,7 @@ switch (script) {
     break;
 
   default:
-    console.log('Unknown script "' + script + '".');
-    console.log('Perhaps you need to update custom-scripts?');
+    console.log('Unknown script "' + chalk.red(script) + '".');
+    console.log('Perhaps you need to update custom-scripts?\n');
     break;
 }
