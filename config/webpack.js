@@ -1,11 +1,11 @@
-import webpack from 'webpack';
-import noop from 'lodash/noop';
-import paths from '../config/paths';
+const webpack = require('webpack');
+const noop = require('lodash/noop');
+const paths = require('../config/paths');
 
 // Webpack plugins
-import StyleLintPlugin from 'stylelint-webpack-plugin';
-import ExtractTextPlugin from 'extract-text-webpack-plugin';
-import VersionFile from 'webpack-version-file';
+const StyleLintPlugin = require('stylelint-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const VersionFile = require('webpack-version-file');
 
 // Node Environment
 const ENVIRONMENT = process.env.NODE_ENV || 'development';
@@ -23,7 +23,7 @@ function uglify() {
   return noop;
 }
 
-export default {
+module.exports = {
   entry: [
     // activate HMR for React
     'react-hot-loader/patch',

@@ -2,18 +2,18 @@
 // it needs to create an optimized production bundle
 process.env.NODE_ENV = 'production';
 
-import chalk from 'chalk';
-import fs from 'fs-extra';
-import webpack from 'webpack';
-import config from '../config/webpack';
-import {
+const chalk = require('chalk');
+const fs = require('fs-extra');
+const webpack = require('webpack');
+const config = require('../config/webpack');
+const {
   checkRequiredFiles,
   createBuildDirectory,
   copyPublicFolder,
   printErrors,
   printFileSizes,
   logSuccess
-} from '../utils';
+} = require('../utils');
 
 // Script steps
 checkRequiredFiles();

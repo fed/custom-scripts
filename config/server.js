@@ -1,9 +1,7 @@
-import paths from './paths';
-
-export const port = 6789;
+const paths = require('./paths');
 
 // WebpackDevServer Configuration
-export default {
+module.exports = {
   // Enable gzip compression of generated files.
   compress: true,
 

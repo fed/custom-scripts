@@ -4,8 +4,6 @@ var script = process.argv[2];
 var args = process.argv.slice(3);
 var chalk = require('chalk');
 
-require('babel-register');
-
 switch (script) {
   case 'build':
   case 'start':
@@ -37,7 +35,7 @@ switch (script) {
     break;
 
   default:
-    console.log('Unknown script "' + chalk.red(script) + '".');
+    console.log(`Unknown script: ${chalk.red(script)}.`);
     console.log('Perhaps you need to update custom-scripts?\n');
     break;
 }

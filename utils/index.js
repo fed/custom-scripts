@@ -1,27 +1,38 @@
-import chalk from 'chalk';
-import fs from 'fs-extra';
-import path from 'path';
-import paths from '../config/paths';
+const chalk = require('chalk');
+const fs = require('fs-extra');
+const path = require('path');
+const paths = require('../config/paths');
+
+module.exports = {
+  logSuccess,
+  logError,
+  copyPublicFolder,
+  createBuildDirectory,
+  resolveApp,
+  checkRequiredFiles,
+  printFileSizes,
+  printErrors
+};
 
 // Log a green success message to the terminal
-export function logSuccess(text) {
+function logSuccess(text) {
   console.log(chalk.green(text));
 }
 
 // Log a red error message to the terminal
-export function logError(text) {
+function logError(text) {
   console.log(chalk.red(text));
 }
 
 // Copy all files from the public folder to the build one
-export function copyPublicFolder() {
+function copyPublicFolder() {
   fs.copySync(paths.public, paths.build, {
     dereference: true
   });
 }
 
 // Create an empty build directory
-export function createBuildDirectory() {
+function createBuildDirectory() {
   fs.removeSync(paths.build);
   fs.mkdirpSync(paths.build);
 }
@@ -29,12 +40,12 @@ export function createBuildDirectory() {
 // Resolve relative paths.
 const appDirectory = fs.realpathSync(process.cwd());
 
-export function resolveApp(relativePath) {
+function resolveApp(relativePath) {
   return path.resolve(appDirectory, relativePath);
 }
 
 // Warn and crash if required files are missing.
-export function checkRequiredFiles() {
+function checkRequiredFiles() {
   const indexHtmlExists = fs.existsSync(config.paths.index.html);
   const indexJsExists = fs.existsSync(config.paths.index.js);
 
@@ -48,7 +59,7 @@ export function checkRequiredFiles() {
 }
 
 // Print a detailed summary of build files.
-export function printFileSizes(stats) {
+function printFileSizes(stats) {
   stats.toJson().assets
     .filter(asset => /\.(js|css)$/.test(asset.name))
     .map(asset => {
@@ -70,7 +81,7 @@ export function printFileSizes(stats) {
 }
 
 // Print out a list of errors to the terminal.
-export function printErrors(summary, errors) {
+function printErrors(summary, errors) {
   logError(`${summary}\n`);
 
   errors.forEach(err => {

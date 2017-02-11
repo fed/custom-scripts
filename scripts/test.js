@@ -1,3 +1,3 @@
-import {logError} from '../utils';
+const {logError} = require('../utils');
 
 logError('No tests written just yet...\n');

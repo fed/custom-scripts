@@ -1,6 +1,6 @@
-import {resolveApp} from '../utils';
+const {resolveApp} = require('../utils');
 
-export default {
+module.exports = {
   // The source folder is where the application source code lives in.
   source: resolveApp('src'),
 

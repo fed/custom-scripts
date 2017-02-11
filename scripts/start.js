@@ -1,9 +1,9 @@
-import chalk from 'chalk';
-import webpack from 'webpack';
-import WebpackDevServer from 'webpack-dev-server';
-import webpackConfig from '../config/webpack';
-import devServerConfig, {port} from '../config/server';
-import {logError} from '../utils';
+const chalk = require('chalk');
+const webpack = require('webpack');
+const WebpackDevServer = require('webpack-dev-server');
+const webpackConfig = require('../config/webpack');
+const devServerConfig = require('../config/server');
+const {logError} = require('../utils');
 
 serve();
 
@@ -12,7 +12,7 @@ function serve() {
   const server = new WebpackDevServer(compiler, devServerConfig);
 
   // Launch WebpackDevServer
-  server.listen(port, err => {
+  server.listen(6789, err => {
     if (err) {
       return logError(err);
     }
