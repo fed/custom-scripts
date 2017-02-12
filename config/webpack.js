@@ -56,7 +56,21 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        query: {
+          presets: [
+            // webpack understands the native import syntax, and uses it for tree shaking
+            ['es2015', { modules: false }],
+
+            // Specifies what level of language features to activate.
+            // Stage 2 is "draft", 4 is finished, 0 is strawman.
+            // See https://tc39.github.io/process-document/
+            'stage-2',
+
+            // Transpile React components to JavaScript
+            'react'
+          ]
+        }
       },
 
       // Allow importing CSS modules and extract them to a .css file
