@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const noop = require('lodash/noop');
+const path = require('path');
 const paths = require('../config/paths');
 
 // Webpack plugins
@@ -48,8 +49,19 @@ module.exports = {
       {
         test: /\.js$/,
         enforce: 'pre',
-        loader: 'eslint-loader',
-        exclude: /node_modules/
+        exclude: /node_modules/,
+        use: [{
+          loader: 'eslint-loader',
+          options: {
+            // Point ESLint to our predefined config file (.eslintrc)
+            configFile: path.join(__dirname, './eslint.json'),
+            useEslintrc: false,
+            emitWarning: true,
+            emitError: true,
+            failOnWarning: false,
+            failOnError: true
+          }
+        }],
       },
 
       // Parse all ES6/JSX files and transpile them to plain old JS
@@ -90,7 +102,7 @@ module.exports = {
             {
               loader: 'postcss-loader',
               options: {
-                ident: 'postcss',
+                ident: 'postcss', // https://webpack.js.org/guides/migrating/#complex-options
                 plugins: () => [
                   require('postcss-modules-values'),
                   require('autoprefixer'),
@@ -117,21 +129,11 @@ module.exports = {
   },
 
   plugins: [
-    // Set route to .eslintrc file
-    new webpack.LoaderOptionsPlugin({
-      test: /\.js$/,
-      options: {
-        eslint: {
-          configFile: 'node_modules/custom-scripts/config/eslint.json'
-        }
-      }
-    }),
-
     // Lint CSS files using Stylelint
     new StyleLintPlugin({
       context: paths.source,
       files: '{,**/}*.css',
-      configFile: 'node_modules/custom-scripts/config/stylelint.json'
+      configFile: path.join(__dirname, './stylelint.json')
     }),
 
     // ExtractTextPlugin
