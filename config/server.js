@@ -15,13 +15,7 @@ module.exports = {
   // Match the output `publicPath`. In development, we always serve from /.
   publicPath: '/',
 
-  // Enable HMR on the server. Note that only changes
-  // to CSS are currently hot reloaded. JS changes will refresh the browser.
-  hot: true,
-
   historyApiFallback: true,
 
-  stats: {
-    colors: true
-  }
+  stats: "errors-only"
 };
