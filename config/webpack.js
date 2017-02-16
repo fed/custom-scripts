@@ -15,6 +15,7 @@ const ENVIRONMENT = process.env.NODE_ENV || 'development';
 function uglify() {
   if (ENVIRONMENT === 'production') {
     return new webpack.optimize.UglifyJsPlugin({
+      sourceMap: true,
       compress: {
         warnings: false
       }
@@ -47,9 +48,7 @@ module.exports = {
     publicPath: '/'
   },
 
-  // context: resolve(__dirname, 'src'),
-
-  devtool: 'inline-source-map',
+  devtool: 'source-map',
 
   // Loaders
   module: {
