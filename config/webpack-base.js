@@ -1,42 +1,12 @@
-const webpack = require('webpack');
-const noop = require('lodash/noop');
 const path = require('path');
 const paths = require('../config/paths');
 
 // Webpack plugins
 const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const VersionFile = require('webpack-version-file');
-
-// Node Environment
-const ENVIRONMENT = process.env.NODE_ENV || 'development';
-
-// Optimize React code on production only (minification, uglify, mangling, etc.)
-function uglify() {
-  if (ENVIRONMENT === 'production') {
-    return new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
-      compress: {
-        warnings: false
-      }
-    });
-  }
-
-  return noop;
-}
 
 module.exports = {
-  entry: [
-    // Include an alternative client for WebpackDevServer. A client's job is to
-    // connect to WebpackDevServer by a socket and get notified about changes.
-    // When you save a file, the client will either apply hot updates (in case
-    // of CSS changes), or refresh the page (in case of JS changes). When you
-    // make a syntax error, this client will display a syntax error overlay.
-    require.resolve('react-dev-utils/webpackHotDevClient'),
-
-    // The entry point to our app.
-    paths.indexJs
-  ],
+  entry: paths.indexJs,
 
   output: {
     // Needs to be an absolute path
@@ -47,8 +17,6 @@ module.exports = {
     // necessary for HMR to know where to load the hot update chunks
     publicPath: '/'
   },
-
-  devtool: 'source-map',
 
   // Loaders
   module: {
@@ -145,25 +113,7 @@ module.exports = {
     }),
 
     // ExtractTextPlugin
-    new ExtractTextPlugin('bundle.css'),
-
-    // Optimize production build
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(ENVIRONMENT)
-    }),
-
-    uglify(),
-
-    // Write exposed version text file next to bundle.js
-    new VersionFile({
-      output: paths.build + '/' + 'version.txt',
-      templateString: '<%= name %>@<%= version %>\n' +
-        'Build date: <%= buildDate %>\n' +
-        'Environment: <%= environment %>',
-      data: {
-        environment: ENVIRONMENT
-      }
-    })
+    new ExtractTextPlugin('bundle.css')
   ],
 
   // Avoid complex relative routes when importing modules

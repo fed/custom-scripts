@@ -1,5 +1,5 @@
 const paths = require('./paths');
-const webpackConfig = require('./webpack');
+const webpackConfig = require('./webpack-dev');
 
 // WebpackDevServer Configuration
 module.exports = {

@@ -1,7 +1,7 @@
 const chalk = require('chalk');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const webpackConfig = require('../config/webpack');
+const webpackConfig = require('../config/webpack-dev');
 const devServerConfig = require('../config/server');
 const {logError} = require('../utils');
 
