@@ -37,7 +37,7 @@ module.exports = {
             failOnWarning: false,
             failOnError: true
           }
-        }],
+        }]
       },
 
       // Parse all ES6/JSX files and transpile them to plain old JS

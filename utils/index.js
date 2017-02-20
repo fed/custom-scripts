@@ -42,7 +42,7 @@ function checkRequiredFiles() {
   const indexJsExists = fse.existsSync(paths.indexJs);
 
   if (!indexHtmlExists || !indexJsExists) {
-    logError(`\nSome required files couldn't be found. Make sure these all exist:\n`);
+    logError('\nSome required files couldn\'t be found. Make sure these all exist:\n');
     logError(`\t- ${paths.indexHtml}`);
     logError(`\t- ${paths.indexJs}\n`);
 

@@ -3,7 +3,6 @@
 process.env.NODE_ENV = 'production';
 
 const chalk = require('chalk');
-const fs = require('fs-extra');
 const webpack = require('webpack');
 const config = require('../config/webpack-prod');
 const {
