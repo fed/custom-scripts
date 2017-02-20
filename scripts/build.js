@@ -22,7 +22,7 @@ copyPublicFolder();
 
 // Create a production build
 function build() {
-  console.log('\nCreating an optimized production build...');
+  console.log('Creating an optimized production build...');
 
   webpack(config)
     .run((err, stats) => {

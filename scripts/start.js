@@ -21,6 +21,6 @@ function serve() {
     const url = `http://localhost:${port}`;
 
     console.log('Starting the development server...');
-    console.log(`App will go live on ${chalk.green(url)}\n`);
+    console.log(`App will go live on ${chalk.green(url)}`);
   });
 }
