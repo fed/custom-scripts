@@ -1,5 +1,3 @@
-process.env.NODE_ENV = 'development';
-
 const assign = require('lodash/assign');
 const paths = require('../config/paths');
 const webpackBaseConfig = require('./webpack-base');
@@ -17,6 +15,8 @@ const webpackDevConfig = assign({}, webpackBaseConfig, {
     paths.indexJs
   ],
 
+  // This is slow initially, but it provides fast rebuild speed and yields real files.
+  // Line numbers are correctly mapped since it gets mapped to the original code.
   devtool: 'eval-source-map'
 });
 

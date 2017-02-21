@@ -7,6 +7,11 @@ const VersionFile = require('webpack-version-file');
 const webpackBaseConfig = require('./webpack-base');
 
 const webpackProdConfig = assign({}, webpackBaseConfig, {
+  // Don't attempt to continue if there are any errors.
+  bail: true,
+
+  // A full SourceMap is emitted as a separate file (bundle.js.map).
+  // It adds a reference comment to the bundle so development tools know where to find it.
   devtool: 'source-map',
 
   plugins: webpackBaseConfig.plugins.concat([
@@ -16,10 +21,18 @@ const webpackProdConfig = assign({}, webpackBaseConfig, {
     }),
 
     new webpack.optimize.UglifyJsPlugin({
-      sourceMap: true,
       compress: {
+        screw_ie8: true, // React doesn't support IE8
         warnings: false
-      }
+      },
+      mangle: {
+        screw_ie8: true
+      },
+      output: {
+        comments: false,
+        screw_ie8: true
+      },
+      sourceMap: true
     }),
 
     // Write exposed version text file next to bundle.js

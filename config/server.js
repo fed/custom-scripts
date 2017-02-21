@@ -1,7 +1,7 @@
 const paths = require('./paths');
 const webpackConfig = require('./webpack-dev');
 
-// WebpackDevServer Configuration
+// Webpack Dev Server Configuration
 module.exports = {
   // By default WebpackDevServer serves physical files from current directory
   // in addition to all the virtual build products that it serves from memory.
@@ -32,5 +32,5 @@ module.exports = {
 
   historyApiFallback: true,
 
-  stats: "errors-only"
+  stats: 'errors-only'
 };
