@@ -37,7 +37,7 @@
     "cross-spawn": "^5.0.1",
     "css-loader": "^0.26.0",
     "eslint": "^3.16.0",
-    "eslint-loader": "^1.6.1",
+    "eslint-loader": "github:fknussel/eslint-loader",
     "eslint-plugin-import": "^2.2.0",
     "eslint-plugin-react": "^6.10.0",
     "extract-text-webpack-plugin": "2.0.0-rc.3",
