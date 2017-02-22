@@ -11,10 +11,12 @@ const {
   copyPublicFolder,
   printErrors,
   printFileSizes,
-  logSuccess
+  logSuccess,
+  init
 } = require('../utils');
 
 // Script steps
+init();
 checkRequiredFiles();
 createBuildDirectory();
 build();

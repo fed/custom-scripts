@@ -10,7 +10,8 @@ module.exports = {
   createBuildDirectory,
   checkRequiredFiles,
   printFileSizes,
-  printErrors
+  printErrors,
+  init
 };
 
 // Log a green success message to the terminal
@@ -81,4 +82,13 @@ function printErrors(summary, errors) {
   });
 
   console.log();
+}
+
+// npm by default logs an empty line to the console, Yarn doesn't.
+function init() {
+  const usingYarn = process.env.npm_config_user_agent.includes('yarn');
+
+  if (usingYarn) {
+    console.log();
+  }
 }
