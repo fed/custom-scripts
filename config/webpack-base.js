@@ -90,16 +90,13 @@ module.exports = {
         })
       },
 
-      // Allow importing SVG files
+      // Allow embedding assets smaller than specified limit in bytes as data URLs to avoid requests.
       {
-        test: /\.svg$/,
-        use: 'url-loader?limit=10000&mimetype=image/svg+xml'
-      },
-
-      // Allow importing PNG files
-      {
-        test: /\.png$/,
-        use: 'url-loader?mimetype=image/png'
+        test: [/\.gif$/, /\.jpe?g$/, /\.png$/, /\.svg$/],
+        loader: 'url-loader',
+        options: {
+          limit: 10000
+        }
       }
     ]
   },
