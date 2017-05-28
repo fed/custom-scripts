@@ -6,7 +6,11 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-  entry: paths.indexJs,
+  entry: [
+    'babel-polyfill',
+    'whatwg-fetch',
+    paths.indexJs
+  ],
 
   output: {
     // Needs to be an absolute path
