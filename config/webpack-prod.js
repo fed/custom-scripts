@@ -5,6 +5,8 @@ const assign = require('lodash/assign');
 const paths = require('../config/paths');
 const VersionFile = require('webpack-version-file');
 const webpackBaseConfig = require('./webpack-base');
+const ManifestPlugin = require('webpack-manifest-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const webpackProdConfig = assign({}, webpackBaseConfig, {
   // Don't attempt to continue if there are any errors.
@@ -13,6 +15,11 @@ const webpackProdConfig = assign({}, webpackBaseConfig, {
   // A full SourceMap is emitted as a separate file (bundle.js.map).
   // It adds a reference comment to the bundle so development tools know where to find it.
   devtool: 'source-map',
+
+  // Cache busting on js files
+  output: {
+    filename: 'bundle.[hash].js'
+  },
 
   plugins: webpackBaseConfig.plugins.concat([
     // Optimize production build
@@ -34,6 +41,13 @@ const webpackProdConfig = assign({}, webpackBaseConfig, {
       },
       sourceMap: true
     }),
+
+    // Generate a manifest.json file with a mapping of all
+    // source file names to their corresponding output file
+    new ManifestPlugin(),
+
+    // Cache busting on css files
+    new ExtractTextPlugin('bundle.[hash].css'),
 
     // Write exposed version text file next to bundle.js
     new VersionFile({
