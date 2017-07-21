@@ -18,6 +18,10 @@ const webpackProdConfig = assign({}, webpackBaseConfig, {
 
   // Cache busting on js files
   output: {
+    // Needs to be an absolute path
+    path: paths.build, // not sure i need this
+
+    // Cache busting for JS bundle
     filename: 'bundle.[hash].js'
   },
 

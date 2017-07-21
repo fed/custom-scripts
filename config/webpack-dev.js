@@ -1,6 +1,7 @@
 const assign = require('lodash/assign');
 const paths = require('../config/paths');
 const webpackBaseConfig = require('./webpack-base');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const webpackDevConfig = assign({}, webpackBaseConfig, {
   entry: [
@@ -15,9 +16,24 @@ const webpackDevConfig = assign({}, webpackBaseConfig, {
     paths.indexJs
   ],
 
+  output: {
+    // Needs to be an absolute path
+    path: paths.build,
+
+    filename: 'bundle.js',
+
+    // necessary for HMR to know where to load the hot update chunks
+    publicPath: '/'
+  },
+
   // This is slow initially, but it provides fast rebuild speed and yields real files.
   // Line numbers are correctly mapped since it gets mapped to the original code.
-  devtool: 'eval-source-map'
+  devtool: 'eval-source-map',
+
+  puglins: [
+    // Generate CSS bundle
+    new ExtractTextPlugin('bundle.css')
+  ]
 });
 
 module.exports = webpackDevConfig;

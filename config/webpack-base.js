@@ -12,16 +12,6 @@ module.exports = {
     paths.indexJs
   ],
 
-  output: {
-    // Needs to be an absolute path
-    path: paths.build,
-
-    filename: 'bundle.js',
-
-    // necessary for HMR to know where to load the hot update chunks
-    publicPath: '/'
-  },
-
   // Loaders
   module: {
     rules: [
@@ -114,10 +104,7 @@ module.exports = {
       context: paths.source,
       files: '{,**/}*.css',
       configFile: path.join(__dirname, './stylelint.json')
-    }),
-
-    // ExtractTextPlugin
-    new ExtractTextPlugin('bundle.css')
+    })
   ],
 
   // Avoid complex relative routes when importing modules
