@@ -11,7 +11,7 @@ Here's a list of what I've included:
 * UI Library: [**React**](https://facebook.github.io/react/)
 * Styling: [**CSS Modules**](https://github.com/css-modules/css-modules) and [**PostCSS**](http://postcss.org/)
 * Module Bundler: [**Webpack 2**](https://webpack.github.io/)
-* ES6/7 & JSX -> ES5: [**Babel**](https://babeljs.io/)
+* ES6+ & JSX -> ES5: [**Babel**](https://babeljs.io/)
 * Linting: [**eslint**](http://eslint.org/) and [**stylelint**](http://stylelint.io/)
 * Test Libraries: [**Jest**](https://facebook.github.io/jest/) and [**Enzyme**](https://github.com/airbnb/enzyme)
 
